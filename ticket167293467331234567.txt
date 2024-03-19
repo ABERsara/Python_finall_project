@@ -1,0 +1,8 @@
+name: sara
+passport number: 31234567
+number flight: 1672934673
+airport code: CDG
+date: 2024-01-01 07:30:00
+seat: 1
+
+ ✈️ AIR FRANCE wish you to have a good flight! ✈️ 
