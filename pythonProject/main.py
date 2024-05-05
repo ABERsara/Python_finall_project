@@ -72,9 +72,10 @@ def chooseFlightDate():
                               flight.price, flight.airline) for flight in flightList]
                 for flight in flights:
                     flight.printFlight()
-                break
+                return flights
             else:
                 print("Sorry, we have no flights to offer you on this date. Please try another day.")
+                return None
         except:
             print("You enter an illegal format for a day. insert a number of day.")
 
@@ -87,22 +88,23 @@ while on:
     cityCode = flightSys.findCityCode(dest)
     if cityCode != None:
         # choose a date for a flight
-        chooseFlightDate()
+        flights=chooseFlightDate()
         #  choose a flight
         chooseFlight = False
         while not chooseFlight:
             flightNum=input("Insert the desired flight number ")
-            for flight in flights:
-                if flight.flightNum==flightNum:
-                    places = choosePlaces()
-                    if not flight.Availability(places):
-                        print("Sorry, but there are not enough places on this flight, please insert another flight ")
-                    else:
-                        chooseFlight = True
-                        currentFlight = flight
-                        break  # This breaks out of the outer loop
-        # print the flight details
-        currentFlight.printFlight()
+            if flights:
+                for flight in flights:
+                    if flight.flightNum==flightNum:
+                        places = choosePlaces()
+                        if not flight.Availability(places):
+                            print("Sorry, but there are not enough places on this flight, please insert another flight ")
+                        else:
+                            chooseFlight = True
+                            currentFlight = flight
+                            break  # This breaks out of the outer loop
+            # print the flight details
+            currentFlight.printFlight()
         # receives  the credit details for payment
         pay=False
         while not payCreditCard():
